@@ -12,8 +12,4 @@
 0042,Polvo,0700,https://pergunteaopolvo.com.br/, polvo,pergunte,escolha
 0066,Moacir,1000,https://mobile.twitter.com/ponti3, ponti,moacir,maravilha
 0075,Google,1000,www.google.com.br,tio,google,pesquisa,baidu
-
-
-
-
-videos,0020,900,0024,800
+0075,Google,1000,www.google.com.br,videos,0020,900,0024,800

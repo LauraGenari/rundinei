@@ -33,7 +33,7 @@ int main(){
           descarrega_lista(lista, stdout);
 			break;
       case '6':
-          /*Sair(lista, nomearq);*/
+          Sair(lista, nomearq);
       break;
 			default:
 				printf("\nComando incorreto!!!!!\n\tescolha uma opcao valida:\n\n");
