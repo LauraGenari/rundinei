@@ -23,7 +23,6 @@ int busca_binaria(int chave, LISTA* lista){
   	if(chave == lista->site[media].id){
   		return media;
   	}
-
 		return erro;
 }
 
@@ -133,6 +132,7 @@ void descarrega_lista(LISTA * lista, FILE * fp){
 	    count++;
   }
 }
+
 void alt_rel(LISTA * lista){
 	if(lista == NULL) return ;
 	int ID;
@@ -171,7 +171,7 @@ void remo_site(LISTA * lista){
 		pos = busca_binaria(ID, lista);
 	}
 
-	printf("Tem certeza que deseja deletar a palavra %s? s/n\n", lista->site[pos].nome);
+	printf("Tem certeza que deseja deletar o site %s? s/n\n", lista->site[pos].nome);
 	scanf("%s", s);
 	while(s[0] != 's' && s[0] != 'n'){
 		printf("digite s ou n\n");

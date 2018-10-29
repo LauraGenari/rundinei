@@ -3,12 +3,11 @@
 #include "lista.h"
 
 int main(){
+  char controle[100], nomearq[50];
 
-  char controle[100];
-	char nomearq[50];
-  int verifica;
 	printf("Insira o nome do arquivo\n");
 	scanf("%s", nomearq);
+
   LISTA * lista = le_csv(nomearq);
   if(lista == NULL) return 0;
 

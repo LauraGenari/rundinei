@@ -33,7 +33,7 @@ void copia_site(SITE * s1, SITE * s2){
     strcpy(s1->link,s2->link);
     s1->nrowords = s2->nrowords;
 
-    int i;
+    int i=0;
     for(i = 0; i < s2->nrowords; i++){
       strcpy(s1->keywords[i],s2->keywords[i]);
     }
