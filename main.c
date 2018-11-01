@@ -7,7 +7,6 @@ int main(){
 
 	printf("Insira o nome do arquivo\n");
 	scanf("%s", nomearq);
-
   LISTA * lista = le_csv(nomearq);
   if(lista == NULL) return 0;
 
@@ -39,5 +38,6 @@ int main(){
 			break;
 		}
 	}
+
 	return 0;
 }

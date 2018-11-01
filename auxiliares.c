@@ -159,15 +159,17 @@ void inserir_novo_site(LISTA* lista){
   int aux_id, aux_rel, aux_nrowords = 0, i, verifica;
   char aux_link[100], aux_nome[50], c = 's',** aux_keywords;
 
+
   aux_keywords =(char **) malloc(10 * sizeof(char*));
   for(i = 0; i < 10; i++){
     aux_keywords[i] = (char *) malloc(50 * sizeof(char));
   }
-
 	if(aux_keywords == NULL){
+
     for(i = 0; i < 10; i++){
       free(aux_keywords[i]);
     }
+
     free(aux_keywords);
     aux_keywords == NULL;
     return;
@@ -219,14 +221,14 @@ void inserir_novo_site(LISTA* lista){
 	aux = criar_site(aux_id, aux_nome, aux_rel, aux_link, aux_keywords, aux_nrowords);
   inserir_site_lista(lista, aux);
 
-	printf("criou site\n");
 	printf("\nSite adicionado com sucesso!\nPara descarregá-lo no arquivo, digite 6 e saia do programa\n");
 
   for(i = 0; i < 10; i++){
     free(aux_keywords[i]);
   }
+
   free(aux_keywords);
-	aux_keywords == NULL;
+	free(aux);
 }
 
 void Sair(LISTA *buffer, char* nome){

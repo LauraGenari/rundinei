@@ -20,7 +20,7 @@ int busca_binaria(int chave, LISTA* lista){
 		}
 		media = (int)(inf+sup)/2.0;
   	}
-  	if(chave == lista->site[media].id){
+	 	if(chave == lista->site[media].id){
   		return media;
   	}
 		return erro;
