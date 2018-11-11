@@ -200,6 +200,29 @@ void ins_palavra_chave(LISTA * lista){
 
 	printf("Digite a palavra-chave a ser adicionada:\n");
 	scanf("%s", palavra);
+	int i=0;
+	while(palavra[i] != '\0'){
+		int cast = (int) palavra[i];
+		if(cast < 0){
+			i = -1;
+			break;
+		}
+		i++;
+	}
+	while(i == -1){
+		printf("\nA palavra possui caracter invalido. Insira novamente\n");
+		scanf("%s", palavra);
+		i=0;
+		while(palavra[i] != '\0'){
+			int cast = (int) palavra[i];
+			if(cast < 0){
+				i = -1;
+				break;
+			}
+			i++;
+		}
+	}
+
 	inserir_keyword(&(lista->site[pos]), palavra);
 	printf("Voce deseja uma adicionar uma nova palavra chave? s/n\n");
 	scanf("%s", c);

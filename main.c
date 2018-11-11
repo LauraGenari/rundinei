@@ -10,8 +10,8 @@ int main(){
   LISTA * lista = le_csv(nomearq);
   if(lista == NULL) return 0;
 
-	while(controle[0]!='6'){
-		printf("1. Inserir um site\n2. Remover um site\n3. Inserir palavra-chave\n4. Atualizar relevância\n5. Exibir sites \n6. Sair\n");
+	while(controle[0] != '7'){
+		printf("1. Inserir um site\n2. Remover um site\n3. Inserir palavra-chave\n4. Atualizar relevância\n5. Exibir sites\n6. Busca por palavra-chave\n7. Sair\n");
 		scanf("%s", controle);
 
 		switch(controle[0]){
@@ -31,6 +31,9 @@ int main(){
           descarrega_lista(lista, stdout);
 			break;
       case '6':
+          //busca_keyword();
+      break;
+      case '7':
           Sair(lista, nomearq);
       break;
 			default:

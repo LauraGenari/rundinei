@@ -208,14 +208,27 @@ void inserir_novo_site(LISTA* lista){
 		if(c != 'n'){
 	    printf("\nEscreva a palavra chave do novo site: \t");
 	    verifica = scanf("%s", aux_keywords[aux_nrowords]);
-	    printf("\n voce deseja inserir nova palavra chave (s/n)\t");
-	    verifica = scanf(" %c", &c);
-			while (c != 's' && c != 'n') {
-	      printf("\n escreva uma resposta valida (s/n)\t");
-	      verifica = scanf(" %c", &c);
-	    }
-		  aux_nrowords++;
-		}
+      int i = 0;
+      while(aux_keywords[aux_nrowords][i]!= '\0'){
+          int cast = aux_keywords[aux_nrowords][i];
+          if(cast < 0){
+            printf("\nA palavra possui caracter invalido. Insira novamente\n");
+            i = -1;
+            break;
+          }
+          i++;
+      }
+
+      if(i != -1){
+    	    printf("\n voce deseja inserir nova palavra chave (s/n)\t");
+    	    verifica = scanf(" %c", &c);
+    			while (c != 's' && c != 'n') {
+    	      printf("\n escreva uma resposta valida (s/n)\t");
+    	      verifica = scanf(" %c", &c);
+    	    }
+          aux_nrowords++;
+      }
+    }
   }
 
 	aux = criar_site(aux_id, aux_nome, aux_rel, aux_link, aux_keywords, aux_nrowords);
