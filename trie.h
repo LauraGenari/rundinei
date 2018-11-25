@@ -1,3 +1,5 @@
+#ifndef TRIE_H
+#define	TRIE_H
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -10,10 +12,13 @@ struct CHAINLIST{
 typedef struct TRIE Notrie;
 struct TRIE{
 	Nolist* ids;
-	Notrie* ramos[35];
+	int flag;
+	Notrie* ramos[37];
 };
 
+void incluipalavra(Notrie* no, int* palavra, int id);
 void tratapalavra(char* palavra, int* novapalavra);
-void incluipalavra(Notrie* no, int* palavra, int id, int i);
 int checapalavra(Notrie* no, int* palavra);
 void limpaarvore(Notrie* no);
+
+#endif

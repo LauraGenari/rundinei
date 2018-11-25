@@ -5,7 +5,7 @@
 #include "lista.h"
 #include "auxiliares.h"
 
-LISTA * le_csv(char * arquivo){
+LISTA * le_csv(char * arquivo, Notrie* no){
   FILE * fp = NULL;
   LISTA * buffer=NULL;
   SITE * aux=NULL;
@@ -14,16 +14,17 @@ LISTA * le_csv(char * arquivo){
   fp = fopen(arquivo, "r");
 	if(fp == NULL){
 	    printf("\narquivo não encontrado\nexecute o programa e tente novamente:\n");
+            free(no);
 			return NULL;
 	}
 
   buffer = criar_lista(tam);
 	while(!feof(fp)){
-		aux = le_linha(fp);
+		aux = le_linha(fp, no);
     if(aux == NULL) break;
 
     inserir_site_lista(buffer, aux);
-		liberar_site(aux);
+	liberar_site(aux);
 
     if(buffer->fim >= tam - 2){
        tam += (tam/2);
@@ -35,7 +36,7 @@ LISTA * le_csv(char * arquivo){
 	return buffer;
 }
 
-SITE * le_linha(FILE *fp){
+SITE * le_linha(FILE *fp, Notrie* no){
 	if (fp == NULL) return ERRO;
 
   SITE * aux;
@@ -85,18 +86,44 @@ SITE * le_linha(FILE *fp){
  	strcpy(aux_keywords[words], c);
  	words++;
 
-  aux = criar_site(aux_id, aux_nome, aux_rel, aux_link, aux_keywords, words);
+    aux = criar_site(aux_id, aux_nome, aux_rel, aux_link, aux_keywords, words);
+    insereword_trie(no, aux_keywords, words);
 
-  for(i = 0; i < 10; i++){
-    free(aux_keywords[i]);
-  }
+    for(i = 0; i < 10; i++){
+        free(aux_keywords[i]);
+    }
 
-  free(aux_keywords);
+    free(aux_keywords);
 
 	free(c);
 
 
-  return aux;
+    return aux;
+}
+
+void insereword_trie(Notrie* no,char ** keywords, int words){
+    int i;
+    int* novapalavra = malloc(50*sizeof(int));
+    for(i = 0; i < words; i++){
+        tratapalavra(keywords[i], novapalavra);
+        incluipalavra(no, novapalavra, 0);
+    }
+    free(novapalavra);
+}
+
+void busca_keyword(Notrie* no){
+    char* palavra = malloc(50 * sizeof(char));
+    int* novapalavra = malloc(50 * sizeof(int));
+    
+    printf("Digite uma palavra a ser buscada\n");
+    scanf("%s", palavra);
+    tratapalavra(palavra, novapalavra);
+    int flag = checapalavra(no, novapalavra);
+    if(flag) printf("\nachou\n");
+    else printf("\nnot achou\n");
+
+    free(palavra);
+    free(novapalavra);
 }
 
 void Remover_Site(LISTA * lista){

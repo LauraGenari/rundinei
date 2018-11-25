@@ -3,6 +3,7 @@
 #define disponivel -1
 #define ERRO NULL
 #define erro -32000
+#include <stdio.h>
 
 typedef struct Site{
   int id;
