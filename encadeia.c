@@ -74,7 +74,7 @@ int* mostra_id(LIST_ENC* lista){
     }
     return ids;
 }
-
+/*
 int main(){
     LIST_ENC* lista = cria_lista();
     for (int i = 0; i < 10000; ++i)

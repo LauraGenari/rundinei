@@ -29,16 +29,13 @@ void incluipalavra(Notrie* no, int* palavra, int id){
 	int i = 0;
 	while(1){
 		if(palavra[i] == -1){ 
-			if(no->ids == NULL){
-				//no->ids = cria_lista();
-				//no->flag = 1;
-				no->ids = (Nolist*)0x82133;
+			if(no->lista == NULL){
+				no->lista = cria_lista();
+				cria_no(no->lista, id);
 				return;
 			}
 			else{
-				//inserir(id, no->ids);
-				//no->flag = 1;
-				no->ids = (Nolist*)0x82133;
+				cria_no(no->lista, id);
 				return;
 			}
 		}
@@ -48,10 +45,7 @@ void incluipalavra(Notrie* no, int* palavra, int id){
 		}
 		else{//caso contrario, cria o novono
 			novono = malloc(sizeof(Notrie));
-			if(novono == NULL){
-				printf("malloc não foi feito");	
-				return;
-			}
+			novono->lista = NULL;
 			no->ramos[palavra[i]] = novono;
 		}
 		no = novono;
@@ -59,14 +53,33 @@ void incluipalavra(Notrie* no, int* palavra, int id){
 	}
 }
 
-int checapalavra(Notrie* no, int* palavra){
+int* checapalavra(Notrie* no, int* palavra){
 	int i = 0;
 	while(1){
 		if(palavra[i] == -1){
-			if(no->ids != NULL) return 1;
-			else return 0;
+			if(no->lista != NULL){
+				int* vet = mostra_id(no->lista);
+				return vet;
+			}
+			else return NULL;
 		}
-		if(no->ramos[palavra[i]] == NULL){return 0;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
+		if(no->ramos[palavra[i]] == NULL){return NULL;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
+		no = no->ramos[palavra[i]];
+		i++;
+	}
+}
+
+void removepalavra(Notrie* no, int* palavra, int id){
+	int i = 0;
+	while(1){
+		if(palavra[i] == -1){
+			if(no->lista != NULL){
+				remover_no(no->lista, id);
+				return;
+			}
+			else return;
+		}
+		if(no->ramos[palavra[i]] == NULL){return;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
 		no = no->ramos[palavra[i]];
 		i++;
 	}
@@ -78,11 +91,12 @@ void limpaarvore(Notrie* no){
 		limpaarvore(no->ramos[i]);
 		}
 	}
-	//liberalistaencadeada();
+	if(no->lista != NULL)
+		libera(no->lista);
 	free(no);	
 }
-
-/*int main(){
+/*
+int main(){
 	clock_t time1 = clock();
 	clock_t time2 = clock();
 	time1 = clock();
@@ -90,26 +104,46 @@ void limpaarvore(Notrie* no){
 	//printf("tmpo: %ld\n", time2 - time1);
 	char* palavra = malloc(300 * sizeof(char));
 	int* palavranova = malloc(300 * sizeof(int));
+	int* nros;
 	int i = 0;
-	int flag = 0;
+	int id;
 	int controle;
 	Notrie* no = malloc(sizeof(Notrie)); 
 	scanf("%d", &controle);
 	while (controle != 10){
 		if(controle == 1){
+			printf("insira o id\n");
+			scanf("%d", &id);
+			printf("agr a palavra\n");
 			scanf("%s", palavra);
 			tratapalavra(palavra, palavranova);
-			incluipalavra(no, palavranova, 3);
+			incluipalavra(no, palavranova, id);
+		}
+		else if(controle == 3){
+			printf("insira o id\n");
+			scanf("%d", &id);
+			printf("agr a palavra\n");
+			scanf("%s", palavra);
+			tratapalavra(palavra, palavranova);
+			removepalavra(no, palavranova, id);
 		}
 		else{
 			scanf("%s", palavra);	
 			tratapalavra(palavra, palavranova);
 			time1 = clock();
-			flag = checapalavra(no, palavranova);
+			nros = checapalavra(no, palavranova);
 			time2 = clock();
 			printf("tmpo: %ld\n", time2 - time1);
-			if(flag)printf("achou? sim\n");
-			else printf("achou? não\n");
+			if(nros == NULL)
+				printf("achou? nao\n");
+			else{
+				printf("achou? sim, nros:\n");
+				for (int i = 1; i < nros[0]; ++i)
+				{
+					printf("nros[%d] = %d\n", i-1,nros[i]);
+				}
+				free(nros);
+			}
 		}
 		scanf("%d", &controle);
 	}

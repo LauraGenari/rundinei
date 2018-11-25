@@ -33,7 +33,7 @@ int main(){
           		descarrega_lista(lista, stdout);
 				break;
       		case '6':
-          		busca_keyword(no);
+          		busca_keyword(no,lista);
       			break;
       		case '7':
           		Sair(lista, nomearq);

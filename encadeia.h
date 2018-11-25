@@ -18,10 +18,8 @@ struct no{
 
 
 LIST_ENC* cria_lista();
-//void inserir(int id, LIST_ENC* lista);
-//void inserir_no(int id, NO* no);
+NO* cria_no(LIST_ENC* lista, int id);
 void remover_no(LIST_ENC* lista, int id);
 int* mostra_id(LIST_ENC* lista);
 void libera(LIST_ENC* lista);
 void libera_no(NO* no);
-NO* cria_no(LIST_ENC* lista, int id);
