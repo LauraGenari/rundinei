@@ -21,7 +21,7 @@ int main(){
         		Inserir_Site(lista);
 				break;
 			case '2':
-          		Remover_Site(lista);
+          		Remover_Site(lista,no);
 				break;
 			case '3':
           		Inserir_Keyword(lista);

@@ -11,7 +11,7 @@ void busca_keyword(Notrie* no,LISTA * lista);
 void insereword_trie(Notrie* no,char ** keywords, int words, int id);
 SITE* le_linha(FILE *fp, Notrie* no);
 void Exibir_Site(LISTA* buffer);
-void Remover_Site(LISTA * lista);
+void Remover_Site(LISTA * lista,Notrie* no);
 void Atualizar_Relevancia(LISTA * lista);
 void Inserir_Keyword(LISTA * lista);
 void Sair(LISTA *buffer, char* nome);

@@ -103,44 +103,36 @@ SITE * le_linha(FILE *fp, Notrie* no){
 
 void insereword_trie(Notrie* no,char ** keywords, int words, int id){
     int i;
-    int* novapalavra = malloc(50*sizeof(int));
     for(i = 0; i < words; i++){
-        tratapalavra(keywords[i], novapalavra);
-        incluipalavra(no, novapalavra, id);
+        incluipalavra(no, keywords[i], id);
     }
-    free(novapalavra);
 }
 
 void busca_keyword(Notrie* no, LISTA* lista){
     char* palavra = malloc(50 * sizeof(char));
-    int* novapalavra = malloc(50 * sizeof(int));
     int* pos; 
-    int *nros;
+    int* nros;
 
     printf("Digite uma palavra a ser buscada\n");
     scanf("%s", palavra);
-    tratapalavra(palavra, novapalavra);
-    nros = checapalavra(no, novapalavra);
+    nros = checapalavra(no, palavra);
     if(nros == NULL){ 
     	printf("not achou\n");
     }
     else{ 
     	printf("achou:\n");
-    	int* pos = malloc(sizeof(int)*nros[0]);
-    	for (int i = 1; i < nros[0]; ++i){
-    		
-    		pos[i-1] = busca_binaria(nros[i],lista);
-    		descarregar_site(stdout, &(lista->site[pos]));
+    	//int* pos = malloc(sizeof(int)*nros[0]);
+    	for (int i = 0; i < nros[0]; ++i){
+    		printf("%d\n", nros[i+1]);
     	}
     }
 
-    free(pos);
+    //free(pos);
     free(nros);
     free(palavra);
-    free(novapalavra);
 }
 
-void Remover_Site(LISTA * lista){
+void Remover_Site(LISTA * lista, Notrie * no){
   int seletor = 0, ID, verifica;
 
   while(seletor != 1){
@@ -156,7 +148,7 @@ void Remover_Site(LISTA * lista){
       return;
     }
   }
-  remo_site(lista);
+  remo_site(lista,no);
 }
 
 void Atualizar_Relevancia(LISTA * lista){

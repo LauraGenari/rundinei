@@ -1,6 +1,7 @@
 #ifndef LISTA_H
 #define LISTA_H
 #include "site.h"
+#include "trie.h"
 
 typedef struct Lista{
 	SITE * site;
@@ -17,7 +18,7 @@ void aumentar_lista(LISTA * l1,int tam);
 int lista_cheia(LISTA * lista);
 void descarrega_lista(LISTA * lista, FILE * fp);
 void alt_rel(LISTA* lista);
-void remo_site(LISTA* lista);
+void remo_site(LISTA* lista, Notrie* no);
 void ins_palavra_chave(LISTA* lista);
 
 #endif

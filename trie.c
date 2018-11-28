@@ -1,7 +1,8 @@
 #include <time.h>
 #include "trie.h"
 
-void tratapalavra(char* palavra, int* novapalavra){
+int* tratapalavra(char* palavra){
+	int* novapalavra = malloc(50*sizeof(int));
 	int i = 0;
 	while(palavra[i] != '\0'){
 		if(palavra[i] > 47 && palavra[i] < 58){
@@ -22,20 +23,24 @@ void tratapalavra(char* palavra, int* novapalavra){
 		i++;
 	}
 	novapalavra[i] = -1;
+	return novapalavra;
 }
 
 
-void incluipalavra(Notrie* no, int* palavra, int id){
+void incluipalavra(Notrie* no, char* palavrachar, int id){
+	int* palavra = tratapalavra(palavrachar);
 	int i = 0;
 	while(1){
 		if(palavra[i] == -1){ 
 			if(no->lista == NULL){
 				no->lista = cria_lista();
 				cria_no(no->lista, id);
+				free(palavra);
 				return;
 			}
 			else{
 				cria_no(no->lista, id);
+				free(palavra);
 				return;
 			}
 		}
@@ -51,35 +56,48 @@ void incluipalavra(Notrie* no, int* palavra, int id){
 		no = novono;
 		i++;
 	}
+	free(palavra);
 }
 
-int* checapalavra(Notrie* no, int* palavra){
+int* checapalavra(Notrie* no, char* palavrachar){
+	int* palavra = tratapalavra(palavrachar);
 	int i = 0;
 	while(1){
 		if(palavra[i] == -1){
 			if(no->lista != NULL){
 				int* vet = mostra_id(no->lista);
+				free(palavra);
 				return vet;
 			}
-			else return NULL;
+			else{
+				free(palavra);
+				return NULL;
+			}
 		}
-		if(no->ramos[palavra[i]] == NULL){return NULL;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
+		if(no->ramos[palavra[i]] == NULL){free(palavra);return NULL;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
 		no = no->ramos[palavra[i]];
 		i++;
 	}
 }
 
-void removepalavra(Notrie* no, int* palavra, int id){
+void removepalavra(Notrie* no, char* palavrachar, int id){
+	int* palavra = tratapalavra(palavrachar);
 	int i = 0;
 	while(1){
 		if(palavra[i] == -1){
 			if(no->lista != NULL){
 				remover_no(no->lista, id);
+				free(palavra);
 				return;
 			}
-			else return;
+			else{
+				free(palavra);
+				return;
+			}
 		}
-		if(no->ramos[palavra[i]] == NULL){return;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
+		if(no->ramos[palavra[i]] == NULL){
+			free(palavra);
+			return;}//caso um nó não tenha um ponteiro para a próxima letra, retorna 0
 		no = no->ramos[palavra[i]];
 		i++;
 	}

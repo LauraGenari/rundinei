@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "lista.h"
 #include "site.h"
+#include "trie.h"
 
 int busca_binaria(int chave, LISTA* lista){
 	int inf = 0;
@@ -157,10 +158,11 @@ void alt_rel(LISTA * lista){
 	alterar_relevancia(&(lista->site[pos]), r);
 }
 
-void remo_site(LISTA * lista){
+void remo_site(LISTA * lista, Notrie* no){
 	if (lista == NULL) return;
 	char s[1];
 	int ID;
+	int i;
 	int verifica;
 	printf("Insira o ID:\n");
 	verifica = scanf("%d", &ID);
@@ -178,7 +180,11 @@ void remo_site(LISTA * lista){
 		scanf("%c", s);
 	}
 	if (s[0] == 's') {
-	remover_site(&(lista->site[pos]));
+	SITE* s = &(lista->site[pos]);
+		for (i = 0; i < s->nrowords; ++i)
+			removepalavra(no, s->keywords[i], s->id);
+
+		remover_site(&(s[pos]));
 	}
 	else return;
 }

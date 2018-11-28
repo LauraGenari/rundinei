@@ -10,9 +10,10 @@ struct TRIE{
 	Notrie* ramos[37];
 };
 
-void incluipalavra(Notrie* no, int* palavra, int id);
-void tratapalavra(char* palavra, int* novapalavra);
-int* checapalavra(Notrie* no, int* palavra);
+void incluipalavra(Notrie* no, char* palavrachar, int id);
+int* tratapalavra(char* palavra);
+int* checapalavra(Notrie* no, char* palavrachar);
+void removepalavra(Notrie* no, char* palavrachar, int id);
 void limpaarvore(Notrie* no);
 
 #endif
