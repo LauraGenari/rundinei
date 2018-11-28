@@ -114,7 +114,7 @@ void insereword_trie(Notrie* no,char ** keywords, int words, int id){
 void busca_keyword(Notrie* no, LISTA* lista){
     char* palavra = malloc(50 * sizeof(char));
     int* novapalavra = malloc(50 * sizeof(int));
-    int pos; 
+    int* pos; 
     int *nros;
 
     printf("Digite uma palavra a ser buscada\n");
@@ -126,12 +126,15 @@ void busca_keyword(Notrie* no, LISTA* lista){
     }
     else{ 
     	printf("achou:\n");
+    	int* pos = malloc(sizeof(int)*nros[0]);
     	for (int i = 1; i < nros[0]; ++i){
-    		pos = busca_binaria(nros[i],lista);
+    		
+    		pos[i-1] = busca_binaria(nros[i],lista);
     		descarregar_site(stdout, &(lista->site[pos]));
     	}
     }
 
+    free(pos);
     free(nros);
     free(palavra);
     free(novapalavra);
