@@ -107,6 +107,30 @@ void insereword_trie(Notrie* no,char ** keywords, int words, int id){
         incluipalavra(no, keywords[i], id);
     }
 }
+LIST_ENC** recomendados(int* nros, LISTA* lista, Notrie* no){
+  int* nros1;
+  int a, i = 0, j, size;
+  LIST_ENC** bucked = iniciar_bucked(1001);
+  char** string = vetor_palavras(nros, lista, &size);
+  while(i < size){
+    nros1 = checapalavra(no, string[i]);
+    for (j = 0; j < nros1[0]; j++) {
+      a = busca_binaria(nros1[j+1], lista);
+      bucked_inserir(a, bucked, lista->site[a].rel);
+    }
+    free(nros1);
+    i++;
+  }
+  for (i = 0; i < nros[0]; i++) {
+    a = busca_binaria(nros[i+1], lista);
+    bucked_remover(a, bucked, lista->site[a].rel);
+  }
+  for (i = 0; i < size; i++) {
+    free(string[i]);
+  }
+  free(string);
+  return bucked;
+}
 
 void busca_keyword(Notrie* no, LISTA* lista){
     char* palavra = malloc(50 * sizeof(char));
@@ -114,29 +138,41 @@ void busca_keyword(Notrie* no, LISTA* lista){
     int* nros;
     LIST_ENC** bucked = iniciar_bucked(1001);
     int a, i;
+    LIST_ENC* ordem;
     printf("Digite uma palavra a ser buscada\n");
     scanf("%s", palavra);
     nros = checapalavra(no, palavra);
-    if(nros == NULL){
-    	printf("palavra nao encontrada\n");
-    }
-    else{
-      	//printf("nro %d\n", nros[0]);
-      	for (i = 0; i < nros[0]; i++) {
-        	a = busca_binaria(nros[i+1], lista);
-        	printf("id = %d pos = %d\n", nros[i+1], a);
-        	bucked_inserir(a, bucked, lista->site[a].rel);
-      	}
-      	
-    	LIST_ENC* ordem = tirar_bucked(bucked, 1001);
-        a = remove_first(ordem);
-        while(a != -1){
-        	descarregar_site(stdout, &(lista->site[a]));
-           	a = remove_first(ordem);
-        }
-        /**/
+    while(nros == NULL){
+    	printf("\npalavra nao encontrada !!!\nescreva nova palavra para ser buscada:");
+      scanf("%s", palavra);
+      nros = checapalavra(no, palavra);
     }
 
+      	for (i = 0; i < nros[0]; i++) {
+        	a = busca_binaria(nros[i+1], lista);
+        	bucked_inserir(a, bucked, lista->site[a].rel);
+      	}
+
+    	  ordem = tirar_bucked(bucked, 1001);
+        a = remove_first(ordem);
+        printf("\n");
+        while(a != -1){
+        	printf("%s %s\n", lista->site[a].nome, lista->site[a].link); //nao mexer no printf, na duvida ler o pdf!!!!
+            a = remove_first(ordem);
+          }
+        printf("\n");
+        /**/
+        bucked = recomendados(nros, lista, no);
+        ordem = tirar_bucked(bucked, 1001);
+        a = remove_first(ordem);
+        printf("\n");
+        while(a != -1){
+        	printf("%s %s\n", lista->site[a].nome, lista->site[a].link); //nao mexer no printf, na duvida ler o pdf!!!!
+            a = remove_first(ordem);
+          }
+        printf("\n");
+
+    libera(ordem);
     free(nros);
     free(palavra);
 }
@@ -318,8 +354,8 @@ void Inserir_Site(LISTA * lista, Notrie* no){
   inserir_novo_site(lista,no);
 }
 
-char ** vetor_palavras(int * nros, LISTA * l){
-  int i, size = 0, j, k;
+char ** vetor_palavras(int * nros, LISTA * l, int * size){
+  int i, j, k;
   char ** palavra = (char**)malloc(sizeof(char*)*131072);
    for (i = 0; i < 131072; i++) {
      palavra[i] = (char*)malloc(sizeof(char)*45);
@@ -327,11 +363,13 @@ char ** vetor_palavras(int * nros, LISTA * l){
    for (i = 0; i < 131072; i++) {
      palavra[i][0] = '\0';
    }
+   (*size)=0;
    for(i = 1; i <= nros[0]; i++) {
     int pos = busca_binaria(nros[i],l);
-    size += l->site[pos].nrowords;
-    printf("%d\n", size);
+    (*size) += l->site[pos].nrowords;
+    // printf("%d\n", size);
     for(j = 0; j < l->site[pos].nrowords; j++){
+    //  printf("j= %d, %s\n",j, l->site[pos].keywords[j]);
       int strsize = strlen(l->site[pos].keywords[j]),potdedois=2,hash=0;
       for(k = 0; k < strsize; k++){
           hash += (int)l->site[pos].keywords[j][k]*potdedois;
@@ -341,7 +379,10 @@ char ** vetor_palavras(int * nros, LISTA * l){
       else{
         int sond = 1;
         while (palavra[hash&131071][0] != '\0') {
-          if(strcmp(palavra[hash&131071],l->site[pos].keywords[j])==0) break;
+          if(strcmp(palavra[hash&131071],l->site[pos].keywords[j])==0){
+            (*size)--;
+             break;
+           }
             hash += (sond + sond*sond)/2;
          }
          strcpy(palavra[hash&131071], l->site[pos].keywords[j]);
@@ -349,19 +390,26 @@ char ** vetor_palavras(int * nros, LISTA * l){
     }
   }
 
-  char ** string = (char**)malloc(sizeof(char*)*(size));
-   for (i = 0; i < size; i++) {
+  char ** string = (char**)malloc(sizeof(char*)*(*size));
+   for (i = 0; i < (*size); i++) {
      string[i] = (char*)malloc(sizeof(char)*45);
    }
   j = 0;
   for (int i = 0; i <  131072; i++) {
+    //printf("%s\n", palavra[i]);
     if(palavra[i][0] != '\0') {
-      strcpy(string[size-(size-j)], palavra[i]);
+      strcpy(string[j], palavra[i]);
+      //printf("%s\n", string[j]);
       j++;
     }
   }
+  // printf("%d\n", (*size));
+  // for(j=0; j< (*size); j++){
+  //   printf("%d %s\n",j, string[j]);
+  // }
 
-  for (i = 0; i < 45; i++) {
+
+  for (i = 0; i < 131072; i++) {
     free(palavra[i]);
   }
   free(palavra);
@@ -402,6 +450,7 @@ char ** vetor_palavras(int * nros, LISTA * l){
      }
      i--;
    }
+   liberar_bucked(bucked, tam);
    return ordem;
  }
 

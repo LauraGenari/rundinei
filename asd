@@ -7,6 +7,7 @@
 0007,run.codes,0050, https://run.codes/,desespero,tristeza,raiva,bug,odio,warning,icc
 0008,ChoquedeCultura,0900,https://www.tvquase.com/choquedecultur,motorista,cinema,engracado
 0009,Facebook,0750, https://facebook.com,tio,zuck,face,facebook,espionagem,fakenews,corrente
+0010,baidu,0400,www.baidu.com.br,baidu,pesquisa,google
 0020,Netflix,0800,https://www.netflix.com/br,netflix,videos,streaming
 0024,YouTube3,0900,https://www.youtube.com,youtube,videos,online,palavra,exploracao,spam
 0042,Polvo,0700,https://pergunteaopolvo.com.br,polvo,pergunte,escolha
