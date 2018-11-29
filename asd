@@ -1,5 +1,5 @@
-0001,Wikipedia,1000,https://wikipedia.com.br ,trabalho,escola,conhecimento,enciclopedia,wikipedia
-0002,Alistamento,0001,https://alistamento.eb.mil.br,militar,alistamento,exercito,bolodemilho,aluguel,desnessesario
+0001,Wikipedia,1000,https://wikipedia.com.br ,trabalho,escola,conhecimento,enciclopedia,wikipedia,videos
+0002,Alistamento,0001,https://alistamento.eb.mil.br,militar,alistamento,exercito,bolodemilho,aluguel,desnessesario,videos
 0003,ICMCRudnei,1000,http://conteudo.icmc.usp.br/pessoas/rudinei,rudnei,professor,foimalpeloatraso,algoritmos
 0004,FallingFalling,0700,http://www.fallingfalling.com,caindo,queda,fall
 0005,StaggeringBeauty,0900,http://www.staggeringbeauty.com,fun,aesthetic,estranho
@@ -12,7 +12,7 @@
 0042,Polvo,0700,https://pergunteaopolvo.com.br,polvo,pergunte,escolha
 0045,valgrind1,0456,valgrind.com,valgrind,memoria
 0066,Moacir,1000,https://mobile.twitter.com/ponti3,ponti,moacir,maravilha
-0075,Google,1000,https://google.com.br,tio,google,pesquisa,baidu
+0075,Google,1000,https://google.com.br,tio,google,pesquisa,baidu,videos
 0122,igigi,0343,fergergerg,eai,galera
 0123,memoryleak,0666,www.wikileaks.com,leak,memory,memoria
 0166,fwefwe,0123,wfefwefwef,wefwefw,y45yth54h

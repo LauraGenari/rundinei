@@ -121,22 +121,21 @@ void busca_keyword(Notrie* no, LISTA* lista){
     	printf("palavra nao encontrada\n");
     }
     else{
-      printf("nro %d\n", nros[0]);
-      for (i = 0; i < nros[0]; i++) {
-        a = busca_binaria(nros[i+1], lista);
-        printf("id = %d pos = %d\n", nros[i+1], a);
-        bucked_inserir(a, bucked, lista->site[a].rel);
-      }
-
-    LIST_ENC* ordem = tirar_bucked(bucked, 1001);
-          a = remove_first(ordem);
-          while(a != -1){
-            printf("%s %s\n", lista->site[a].nome, lista->site[a].link);
-            a = remove_first(ordem);
-          }
-
+      	//printf("nro %d\n", nros[0]);
+      	for (i = 0; i < nros[0]; i++) {
+        	a = busca_binaria(nros[i+1], lista);
+        	printf("id = %d pos = %d\n", nros[i+1], a);
+        	bucked_inserir(a, bucked, lista->site[a].rel);
+      	}
+      	
+    	LIST_ENC* ordem = tirar_bucked(bucked, 1001);
+        a = remove_first(ordem);
+        while(a != -1){
+        	descarregar_site(stdout, &(lista->site[a]));
+           	a = remove_first(ordem);
+        }
+        /**/
     }
-
 
     free(nros);
     free(palavra);
@@ -379,9 +378,9 @@ char ** vetor_palavras(int * nros, LISTA * l){
  }
 
  void bucked_inserir(int pos, LIST_ENC** bucked, int rel){//ok
-   if (achar_no(bucked[rel], pos)) {
-     cria_no(bucked[rel], pos);
-   }
+   	if (achar_no(bucked[rel], pos)){
+     	cria_no(bucked[rel], pos);
+   	}
  }
 
  void bucked_remover(int pos, LIST_ENC** bucked, int rel){//ok
@@ -392,7 +391,7 @@ char ** vetor_palavras(int * nros, LISTA * l){
 
  LIST_ENC* tirar_bucked(LIST_ENC** bucked, int tam){//ok
    LIST_ENC* ordem = cria_lista();
-   int i = tam;
+   int i = tam - 1;
    int a;
    while(i >= 0){
 
