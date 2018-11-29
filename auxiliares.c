@@ -110,16 +110,16 @@ void insereword_trie(Notrie* no,char ** keywords, int words, int id){
 
 void busca_keyword(Notrie* no, LISTA* lista){
     char* palavra = malloc(50 * sizeof(char));
-    int* pos; 
+    int* pos;
     int* nros;
 
     printf("Digite uma palavra a ser buscada\n");
     scanf("%s", palavra);
     nros = checapalavra(no, palavra);
-    if(nros == NULL){ 
-    	printf("not achou\n");
+    if(nros == NULL){
+    	printf("palavra nao encontrada\n");
     }
-    else{ 
+    else{
     	printf("achou:\n");
     	//int* pos = malloc(sizeof(int)*nros[0]);
     	for (int i = 0; i < nros[0]; ++i){

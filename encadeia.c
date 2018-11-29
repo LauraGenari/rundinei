@@ -12,7 +12,7 @@ NO* cria_no(LIST_ENC* lista, int id){
     NO* no = malloc(sizeof(NO));
     if(lista->tam == 0){
         no->anterior = NULL;
-        lista->inicio = no; 
+        lista->inicio = no;
     }
     else{
         lista->fim->proximo = no;
@@ -25,7 +25,7 @@ NO* cria_no(LIST_ENC* lista, int id){
 }
 
 void remover_no(LIST_ENC* lista, int id){
-    NO* aux1 = lista->inicio, *aux2;
+    NO *aux1 = lista->inicio, *aux2;
     if (lista->tam == 0) return;
 
     if(lista->inicio->id == id) {
@@ -50,7 +50,7 @@ void remover_no(LIST_ENC* lista, int id){
 }
 
 void libera(LIST_ENC* lista){
-  libera_no(lista->inicio);
+  if(lista->inicio != NULL) libera_no(lista->inicio);
   free(lista);
 }
 
@@ -62,7 +62,7 @@ void libera_no(NO* no){
 }
 
 int* mostra_id(LIST_ENC* lista){
-    int* ids = malloc(sizeof(int) *(lista->tam + 1));   
+    int* ids = malloc(sizeof(int) *(lista->tam + 1));
     ids[0] = lista->tam + 1;
     NO* aux = lista->inicio;
     int i = 1;
@@ -73,6 +73,35 @@ int* mostra_id(LIST_ENC* lista){
         i++;
     }
     return ids;
+}
+
+int achar_no(LIST_ENC* lista, int id){//ok
+  NO* aux1 = lista->inicio, *aux2;
+  if (lista->tam == 0) return 1;
+
+  if(lista->inicio->id == id) {
+    return 0;
+  }
+
+  aux2 = lista->inicio->proximo;
+  while (aux2 != NULL) {
+    if (aux2->id == id) {
+      return 0;
+    }
+    aux1 = aux2;
+    aux2 = aux2->proximo;
+  }
+  return 1;
+}
+/*
+retorna a informação q estava na lista encadeada
+se n tiver no retorna -1;
+*/
+int remove_first(LIST_ENC* lista){//ok
+  if(lista->inicio == NULL) return -1;
+  int a = lista->inicio->id;
+  remover_no(lista, a);
+  return a;
 }
 /*
 int main(){

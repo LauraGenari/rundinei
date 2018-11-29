@@ -1,3 +1,5 @@
+#ifndef ENCADEIA_H
+#define ENCADEIA_H
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,3 +25,7 @@ void remover_no(LIST_ENC* lista, int id);
 int* mostra_id(LIST_ENC* lista);
 void libera(LIST_ENC* lista);
 void libera_no(NO* no);
+int achar_no(LIST_ENC* lista, int id);
+int remove_first(LIST_ENC* lista);
+
+#endif
