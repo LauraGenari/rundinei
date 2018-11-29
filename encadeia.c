@@ -63,7 +63,7 @@ void libera_no(NO* no){
 
 int* mostra_id(LIST_ENC* lista){
     int* ids = malloc(sizeof(int) *(lista->tam + 1));
-    ids[0] = lista->tam + 1;
+    ids[0] = lista->tam;
     NO* aux = lista->inicio;
     int i = 1;
     while(1){

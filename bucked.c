@@ -27,12 +27,12 @@ void bucked_remover(int pos, LIST_ENC** bucked, int rel){//ok
   }
 }
 
-LIST_ENC* tirar_bucked(LIST_ENC** bucked, int tam, int* j){//ok
+LIST_ENC* tirar_bucked(LIST_ENC** bucked, int tam){//ok
   (*j) = 0;
   LIST_ENC* ordem = cria_lista();
-  int i = 0;
+  int i = tam;
   int a;
-  while(i < tam){
+  while(i >= 0){
 
     a = remove_first(bucked[i]);
     (*j)++;
@@ -41,7 +41,7 @@ LIST_ENC* tirar_bucked(LIST_ENC** bucked, int tam, int* j){//ok
       a = remove_first(bucked[i]);
       (*j)++;
     }
-    i++;
+    i--;
   }
   return ordem;
 }
@@ -78,7 +78,7 @@ int main(int argc, char const *argv[]) {
   a = 14;//numero que vc remove;
   bucked_remover(a, bucked, a);
 
-  lista = tirar_bucked(bucked, 1001, j);
+  lista = tirar_bucked(bucked, 1001);
   a = remove_first(lista);
   while (a != -1) {
     printf("%d\n", a);

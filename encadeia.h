@@ -28,4 +28,5 @@ void libera_no(NO* no);
 int achar_no(LIST_ENC* lista, int id);
 int remove_first(LIST_ENC* lista);
 
+
 #endif

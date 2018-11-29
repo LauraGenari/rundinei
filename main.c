@@ -18,7 +18,7 @@ int main(){
 
 		switch(controle[0]){
 			case '1':
-        		Inserir_Site(lista);
+        		Inserir_Site(lista,no);
 				break;
 			case '2':
           		Remover_Site(lista,no);
