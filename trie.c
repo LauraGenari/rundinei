@@ -28,8 +28,10 @@ int* tratapalavra(char* palavra){
 
 
 void incluipalavra(Notrie* no, char* palavrachar, int id){
+	//printf("asdasdasda");
 	int* palavra = tratapalavra(palavrachar);
 	int i = 0;
+
 	while(1){
 		if(palavra[i] == -1){ 
 			if(no->lista == NULL){
@@ -44,6 +46,7 @@ void incluipalavra(Notrie* no, char* palavrachar, int id){
 				return;
 			}
 		}
+
 		Notrie* novono;
 		if(no->ramos[palavra[i]] != NULL){//caso o no ja aponte para um novono, o novono recebe o end ja existente
 			novono = no->ramos[palavra[i]];
@@ -113,68 +116,6 @@ void limpaarvore(Notrie* no){
 		libera(no->lista);
 	free(no);	
 }
-/*
-int main(){
-	clock_t time1 = clock();
-	clock_t time2 = clock();
-	time1 = clock();
-	time2 = clock();
-	//printf("tmpo: %ld\n", time2 - time1);
-	char* palavra = malloc(300 * sizeof(char));
-	int* palavranova = malloc(300 * sizeof(int));
-	int* nros;
-	int i = 0;
-	int id;
-	int controle;
-	Notrie* no = malloc(sizeof(Notrie)); 
-	scanf("%d", &controle);
-	while (controle != 10){
-		if(controle == 1){
-			printf("insira o id\n");
-			scanf("%d", &id);
-			printf("agr a palavra\n");
-			scanf("%s", palavra);
-			tratapalavra(palavra, palavranova);
-			incluipalavra(no, palavranova, id);
-		}
-		else if(controle == 3){
-			printf("insira o id\n");
-			scanf("%d", &id);
-			printf("agr a palavra\n");
-			scanf("%s", palavra);
-			tratapalavra(palavra, palavranova);
-			removepalavra(no, palavranova, id);
-		}
-		else{
-			scanf("%s", palavra);	
-			tratapalavra(palavra, palavranova);
-			time1 = clock();
-			nros = checapalavra(no, palavranova);
-			time2 = clock();
-			printf("tmpo: %ld\n", time2 - time1);
-			if(nros == NULL)
-				printf("achou? nao\n");
-			else{
-				printf("achou? sim, nros:\n");
-				for (int i = 1; i < nros[0]; ++i)
-				{
-					printf("nros[%d] = %d\n", i-1,nros[i]);
-				}
-				free(nros);
-			}
-		}
-		scanf("%d", &controle);
-	}
-
-	limpaarvore(no);
-	free(palavra);
-	free(palavranova);
-}
-
-
-
-// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36
-// 0 1 2 3 4 5 6 7 8 9 a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z  ' ' */
 
 
 

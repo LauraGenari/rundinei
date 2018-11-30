@@ -1,6 +1,6 @@
 0001,Wikipedia,1000,https://wikipedia.com.br ,trabalho,escola,conhecimento,enciclopedia,wikipedia,videos
 0002,Alistamento,0001,https://alistamento.eb.mil.br,militar,alistamento,exercito,bolodemilho,aluguel,desnessesario,videos
-0003,ICMCRudnei,1000,http://conteudo.icmc.usp.br/pessoas/rudinei,rudnei,professor,foimalpeloatraso,algoritmos
+0003,ICMCRudnei,1000,http://conteudo.icmc.usp.br/pessoas/rudinei,rudnei,professor,foimalpeloatraso,algoritmos,aaaaaaa
 0004,FallingFalling,0700,http://www.fallingfalling.com,caindo,queda,fall
 0005,StaggeringBeauty,0900,http://www.staggeringbeauty.com,fun,aesthetic,estranho
 0006,ViciousPotato,0700,http://www.viciouspotato.net,meme,aleatorio
@@ -10,7 +10,7 @@
 0010,baidu,0400,www.baidu.com.br,baidu,pesquisa,google
 0020,Netflix,0800,https://www.netflix.com/br,netflix,videos,streaming
 0024,YouTube3,0900,https://www.youtube.com,youtube,videos,online,palavra,exploracao,spam
-0042,Polvo,0700,https://pergunteaopolvo.com.br,polvo,pergunte,escolha
+0042,Polvo,0700,https://pergunteaopolvo.com.br,polvo,pergunte,escolha,aaaaaa,aaaaa,aushaus,sdffds,kkkk,kkkk,hasuha
 0045,valgrind1,0456,valgrind.com,valgrind,memoria
 0066,Moacir,1000,https://mobile.twitter.com/ponti3,ponti,moacir,maravilha
 0075,Google,1000,https://google.com.br,tio,google,pesquisa,baidu,videos
@@ -20,4 +20,4 @@
 1111,teste,0002,testando.com,aaaaaaaaaa,aaaaaaaaa
 1230,aaaaaaa,0003,aaaaaaaaaaa,aaaaaaaz
 2223,aaaaa,0234,aaaaaaaaaaaa,aaaaaaaaaz
-3333,mtotrampo,0000,www.com,aaaaaz
+3333,mtotrampo,0000,www.com,aaaaaz,chav,chavs,wflhwjfhwj,batata

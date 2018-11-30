@@ -19,6 +19,6 @@ int lista_cheia(LISTA * lista);
 void descarrega_lista(LISTA * lista, FILE * fp);
 void alt_rel(LISTA* lista);
 void remo_site(LISTA* lista, Notrie* no);
-void ins_palavra_chave(LISTA* lista);
+void ins_palavra_chave(Notrie* no,LISTA* lista);
 
 #endif

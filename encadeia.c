@@ -103,38 +103,3 @@ int remove_first(LIST_ENC* lista){//ok
   remover_no(lista, a);
   return a;
 }
-/*
-int main(){
-    LIST_ENC* lista = cria_lista();
-    for (int i = 0; i < 10000; ++i)
-    {
-        cria_no(lista, i);
-    }
-
-    remover_no(lista, 9997);
-    remover_no(lista, 9996);
-    remover_no(lista, 9995);
-    int* vet = mostra_id(lista);
-    for (int i = 1; i < vet[0]; ++i){
-        printf("%d\n", vet[i]);
-    }
-
-    free(vet);
-    libera(lista);
-}
-/*
-void inserir(SITE site, LIST_ENC* lista){
-  if (lista->inicio == NULL) {
-    lista->inicio = cria_no(id);
-    return;
-  }else inserir_no(id, lista->inicio);
-  return;
-}
-
-void inserir_no(int id, NO* no){
-  if (no->proximo == NULL) {
-    lista->inicio = cria_no(int id);
-    return;
-  }else inserir_no(id, lista->inicio);
-  return;
-}*/

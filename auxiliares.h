@@ -13,7 +13,7 @@ SITE* le_linha(FILE *fp, Notrie* no);
 void Exibir_Site(LISTA* buffer);
 void Remover_Site(LISTA * lista,Notrie* no);
 void Atualizar_Relevancia(LISTA * lista);
-void Inserir_Keyword(LISTA * lista);
+void Inserir_Keyword(Notrie* no, LISTA * lista);
 void Sair(LISTA *buffer, char* nome);
 void Inserir_Site(LISTA * lista, Notrie* no);
 void inserir_novo_site(LISTA* lista, Notrie* no);

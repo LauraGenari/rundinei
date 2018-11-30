@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lista.h"
 #include "site.h"
 #include "trie.h"
@@ -189,10 +190,10 @@ void remo_site(LISTA * lista, Notrie* no){
 	else return;
 }
 
-void ins_palavra_chave(LISTA * lista){
+void ins_palavra_chave(Notrie* no,LISTA * lista){
 	if(lista == NULL) return;
 	char c[1];
-	char palavra[50];
+	char* palavra = malloc(50*sizeof(char));
 	int ID, verifica;
 	printf("Insira o ID:\n");
 	verifica = scanf("%d", &ID);
@@ -203,12 +204,17 @@ void ins_palavra_chave(LISTA * lista){
 		verifica = scanf("%d", &ID);
 		pos = busca_binaria(ID, lista);
 	}
+	printf("%d", pos);
 
 	printf("Digite a palavra-chave a ser adicionada:\n");
 	scanf("%s", palavra);
+	char* palavra2 = malloc(50*sizeof(char));
+	strcpy(palavra2, palavra);
+	incluipalavra(no, palavra2, lista->site[pos].id);
 	int i=0;
+	int cast;
 	while(palavra[i] != '\0'){
-		int cast = (int) palavra[i];
+		cast = (int) palavra[i];
 		if(cast < 0){
 			i = -1;
 			break;
@@ -220,7 +226,7 @@ void ins_palavra_chave(LISTA * lista){
 		scanf("%s", palavra);
 		i=0;
 		while(palavra[i] != '\0'){
-			int cast = (int) palavra[i];
+			cast = (int) palavra[i];
 			if(cast < 0){
 				i = -1;
 				break;
@@ -228,7 +234,6 @@ void ins_palavra_chave(LISTA * lista){
 			i++;
 		}
 	}
-
 	inserir_keyword(&(lista->site[pos]), palavra);
 	printf("Voce deseja uma adicionar uma nova palavra chave? s/n\n");
 	scanf("%s", c);
@@ -236,8 +241,14 @@ void ins_palavra_chave(LISTA * lista){
 		printf("Opcao invalida, digite s ou n\n");
 		scanf(" %s", c);
 	}
-	if (c[0] == 's') {
-	ins_palavra_chave(lista);
+	if (c[0] == 's'){
+		free(palavra);
+		free(palavra2);
+		ins_palavra_chave(no,lista);
 	}
-	else return;
+	else{
+		free(palavra2);
+		free(palavra);
+		return;
+	}
 }

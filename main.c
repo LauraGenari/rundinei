@@ -24,7 +24,7 @@ int main(){
           		Remover_Site(lista,no);
 				break;
 			case '3':
-          		Inserir_Keyword(lista);
+          		Inserir_Keyword(no,lista);
 				break;
 			case '4':
           		Atualizar_Relevancia(lista);

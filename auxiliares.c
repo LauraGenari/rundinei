@@ -214,7 +214,7 @@ void Atualizar_Relevancia(LISTA * lista){
   alt_rel(lista);
 }
 
-void Inserir_Keyword(LISTA * lista){
+void Inserir_Keyword(Notrie* no,LISTA * lista){
 	  int seletor, verifica;
 	  printf("\nDigite a opção desejada\n1-Adicionar palavra chave\n\n2-Voltar\n");
 		while(seletor != 1){
@@ -229,7 +229,9 @@ void Inserir_Keyword(LISTA * lista){
 		    return;
 		  	}
 			}
-	   ins_palavra_chave(lista);
+
+		
+	   ins_palavra_chave(no,lista);
 	}
 
 void inserir_novo_site(LISTA* lista, Notrie* no){
